@@ -1,0 +1,3040 @@
+/* =========================================
+   1. CONFIGURACIÓN GENERAL
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f8f5f0;
+    color: #51483d;
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+}
+
+.invitation {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* =========================================
+   2. PRIMERA PANTALLA: SOBRE ANIMADO
+========================================= */
+
+.envelope-screen {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    padding: 30px 15px;
+
+    background: radial-gradient(
+        circle at center,
+        #fffdf8,
+        #e9dfce
+    );
+
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+.intro-text {
+    font-size: 10px;
+    letter-spacing: 4px;
+    margin-bottom: 65px;
+    color: #a58b68;
+}
+
+.envelope-container {
+    position: relative;
+    width: 300px;
+    height: 190px;
+
+    cursor: pointer;
+    perspective: 1000px;
+
+    filter: drop-shadow(0 15px 18px #9d886044);
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+
+    background: #d8c4a4;
+    border-radius: 5px;
+}
+
+.letter {
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    left: 5%;
+    bottom: 5%;
+
+    background: #fffdf8;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 1.2s ease;
+}
+
+.letter-monogram {
+    font-family: 'Great Vibes', cursive;
+    font-size: 38px;
+    color: #a88c60;
+}
+
+.letter p {
+    font-size: 12px;
+    margin: 5px;
+}
+
+.letter-date {
+    font-size: 9px;
+    letter-spacing: 3px;
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+
+    background: #cbb28d;
+
+    clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    border-radius: 5px;
+}
+
+.envelope-flap {
+    position: absolute;
+    inset: 0;
+
+    background: #e2d0b3;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 65%
+    );
+
+    transform-origin: top;
+    transition: transform 1s ease;
+    z-index: 5;
+}
+
+.wax-seal {
+    position: absolute;
+    z-index: 6;
+
+    top: 48%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+    background: #a77c55;
+    color: #fff6e8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Great Vibes', cursive;
+    font-size: 23px;
+
+    box-shadow: 0 3px 10px #70503355;
+    transition: opacity .5s ease;
+}
+
+.wax-seal span {
+    font-size: 14px;
+    margin: 0 2px;
+}
+
+.open-message {
+    margin-top: 55px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #8d795f;
+}
+
+.couple-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: 35px;
+    margin-top: 30px;
+    color: #a88c60;
+}
+
+/* Animación de apertura */
+
+.envelope-container.open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope-container.open .wax-seal {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.envelope-container.open .letter {
+    transform: translateY(-130px);
+    transition-delay: .5s;
+}
+
+/* =========================================
+   3. SEGUNDA PANTALLA: INVITACIÓN
+========================================= */
+
+.welcome-screen {
+    display: none;
+
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+
+    padding: 15px;
+
+    background: #f8f5f2;
+
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+}
+
+.welcome-screen.show {
+    display: flex;
+    animation: appear 1.5s forwards;
+}
+
+@keyframes appear {
+    to {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   4. TARJETA PRINCIPAL
+========================================= */
+
+.invitation-card {
+    position: relative;
+
+    width: 100%;
+    max-width: 650px;
+    min-height: 780px;
+
+    padding: 65px 55px;
+
+    background: #faf7f4;
+    overflow: hidden;
+}
+
+/* =========================================
+   5. MARCO DORADO
+========================================= */
+
+.card-border {
+    position: absolute;
+    inset: 25px;
+
+    z-index: 2;
+    pointer-events: none;
+
+    background:
+        linear-gradient(#9c8b75, #9c8b75)
+        left top / 1px 25% no-repeat,
+
+        linear-gradient(#9c8b75, #9c8b75)
+        left top / 35% 1px no-repeat,
+
+        linear-gradient(#9c8b75, #9c8b75)
+        right bottom / 1px 25% no-repeat,
+
+        linear-gradient(#9c8b75, #9c8b75)
+        right bottom / 35% 1px no-repeat;
+}
+
+/* =========================================
+   6. DECORACIONES FLORALES
+========================================= */
+
+/* Ramo superior izquierdo */
+
+.floral-top {
+    position: absolute;
+
+    width: 340px;
+    height: auto;
+
+    top: -15px;
+    left: -15px;
+    right: auto;
+
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Ramo inferior derecho */
+
+.floral-bottom {
+    position: absolute;
+
+    width: 290px;
+    height: auto;
+
+    bottom: -8px;
+    right: -12px;
+
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* =========================================
+   7. CONTENIDO DE LA INVITACIÓN
+========================================= */
+
+.card-content {
+    position: relative;
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+    padding-top: 95px;
+}
+
+/* Texto superior */
+
+.welcome-small {
+    font-size: 9px;
+    letter-spacing: 4px;
+
+    color: #9c8b75;
+
+    margin-bottom: 28px;
+}
+
+/* =========================================
+   8. NOMBRES DE LOS NOVIOS
+========================================= */
+
+.couple-names h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 100px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #765536;
+    line-height: 1.15;
+    margin: 0;
+}
+
+.and-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    color: #9c8058;
+}
+
+/* =========================================
+   9. MENSAJE DE INVITACIÓN
+========================================= */
+
+.invitation-message {
+    margin-top: 55px;
+    max-width: 350px;
+}
+
+.invitation-message p {
+    font-size: 9px;
+    line-height: 2.1;
+
+    letter-spacing: 1.5px;
+
+    color: #57504a;
+}
+
+/* =========================================
+   11. FRASE FINAL
+========================================= */
+
+.welcome-phrase {
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
+    line-height: 1.4;
+    color: #9c8058;
+    margin-top: 15px;
+    margin-bottom: 100px;
+    max-width: 350px;
+    position: relative;
+    z-index: 3;
+}
+
+/* =========================================
+   12. ADAPTACIÓN PARA CELULARES
+========================================= */
+
+@media (max-width: 600px) {
+
+    /* SOBRE ANIMADO */
+    .envelope-container {
+        width: 280px;
+        height: 180px;
+    }
+
+    .intro-text {
+        font-size: 9px;
+        letter-spacing: 3px;
+    }
+
+    /* PANTALLA DE INVITACIÓN */
+    .welcome-screen {
+        width: 100%;
+        min-height: 100svh;
+        padding: 0;
+        display: none;
+        align-items: initial;
+        justify-content: initial;
+    }
+
+    .welcome-screen.show {
+        display: block;
+    }
+
+    /* TARJETA */
+    .invitation-card {
+        position: relative;
+        width: 100%;
+        height: 100svh;
+        min-height: 680px;
+        padding: 15px 20px;
+        overflow: hidden;
+        background: #faf7f4;
+    }
+
+    /* MARCO DORADO */
+    .card-border {
+        inset: 15px;
+    }
+
+    /* FLORES SUPERIORES */
+    .floral-top {
+        position: absolute;
+        width: 240px;
+        height: auto;
+        top: 0;
+        left: 0;
+        right: auto;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* FLORES INFERIORES */
+    .floral-bottom {
+        position: absolute;
+        width: 240px;
+        height: auto;
+        bottom: 0;
+        right: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* CONTENIDO */
+    .card-content {
+        position: relative;
+        z-index: 3;
+        padding-top: 65px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+    }
+
+    .welcome-small {
+        font-size: 8px;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+    }
+
+    /* NOMBRES */
+    .couple-names h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 75px;
+        font-weight: 400;
+        letter-spacing: 0;
+        line-height: 1.05;
+        color: #765536;
+    }
+
+    .and-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 35px;
+        color: #9c8058;
+        margin: 0;
+    }
+
+    /* MENSAJE */
+    .invitation-message {
+        margin-top: 25px;
+        max-width: 270px;
+    }
+
+    .invitation-message p {
+    font-size: 11px;
+    line-height: 1.9;
+    letter-spacing: 1.3px;
+    }
+
+    /* DETALLE DECORATIVO */
+    .love-message {
+        width: 100%;
+        max-width: 290px;
+        margin: 25px auto 10px;
+        text-align: center;
+    }
+
+    .ornament-line {
+        margin-bottom: 15px;
+    }
+
+    .love-title {
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    margin-bottom: 12px;
+    }
+
+    .love-description {
+    font-family: 'Great Vibes', cursive;
+    font-size: 29px;
+    line-height: 1.4;
+    color: #9c8058;
+    }
+
+    /* FRASE FINAL */
+    .welcome-phrase {
+    font-family: 'Great Vibes', cursive;
+    font-size: 27px;
+    line-height: 1.4;
+    max-width: 290px;
+    margin: 12px auto 0;
+    position: relative;
+    z-index: 3;
+    }
+
+}
+
+/* =========================================
+   13. DESPLAZAMIENTO DESPUÉS DE ABRIR
+========================================= */
+
+body.invitation-open {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* PORTADA LIMPIA */
+
+.welcome-screen {
+    display: none;
+    width: 100%;
+    background: #f8f5f2;
+    opacity: 0;
+}
+
+.welcome-screen.show {
+    display: block;
+    animation: appear 1.5s forwards;
+}
+
+/* DETALLE DECORATIVO */
+
+.love-message {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    margin: 55px auto;
+}
+
+.ornament-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 22px;
+    color: #b49a72;
+}
+
+.ornament-line::before,
+.ornament-line::after {
+    content: "";
+    width: 55px;
+    height: 1px;
+    background: #b49a72;
+}
+
+.ornament-line span {
+    font-size: 17px;
+}
+
+.love-title {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #9c8058;
+    margin-bottom: 15px;
+}
+
+.love-description {
+    font-family: 'Great Vibes', cursive;
+    font-size: 25px;
+    line-height: 1.5;
+    color: #9c8058;
+}
+/* Textos principales */
+.card-content {
+    font-family: 'Cormorant Garamond', serif;
+}
+
+/* =========================================
+   TERCERA SECCIÓN: NUESTRA HISTORIA
+========================================= */
+
+.history-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding: 65px 20px;
+    background: #f8f2e9;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.history-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    padding: 35px 25px;
+    text-align: center;
+    background: #fbf7f0;
+    border: 1px solid #d5b779;
+    outline: 1px solid #e7d6b5;
+    outline-offset: 7px;
+    box-shadow: 0 5px 25px rgba(120, 91, 52, 0.08);
+}
+
+/* DECORACIÓN SUPERIOR */
+
+.history-top-decoration {
+    color: #bd974e;
+    font-size: 35px;
+    margin-bottom: 15px;
+    font-family: "Cormorant Garamond", serif;
+}
+
+/* ENCABEZADO */
+
+.history-heading {
+    position: relative;
+    z-index: 2;
+}
+
+.history-subtitle {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: #765536;
+    margin-bottom: 18px;
+}
+
+.history-heading h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 55px;
+    font-weight: 400;
+    color: #795638;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.history-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    color: #bd974e;
+    margin: 18px auto;
+}
+
+.history-divider::before,
+.history-divider::after {
+    content: "";
+    width: 65px;
+    height: 1px;
+    background: #c6a66c;
+}
+
+.history-divider span {
+    font-size: 17px;
+}
+
+.history-description {
+    max-width: 460px;
+    margin: 20px auto 30px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #72543a;
+}
+
+/* MARCO DE LA FOTOGRAFÍA */
+
+.history-photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 510px;
+    margin: 25px auto 20px;
+    padding: 7px;
+    border: 2px solid #c49a4c;
+    border-radius: 210px 210px 12px 12px;
+    background: #fffaf1;
+    box-shadow: 0 4px 12px rgba(120, 91, 52, 0.12);
+}
+
+.history-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border-radius: 200px 200px 7px 7px;
+    background: #eee5d8;
+    color: #927b5b;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 19px;
+}
+
+/* NOMBRES */
+
+.history-names h2 {
+    font-family: "Great Vibes", cursive;
+    font-size: 65px;
+    font-weight: 400;
+    color: #795638;
+    margin: 15px 0;
+}
+
+/* MENSAJE */
+
+.history-message p {
+    max-width: 440px;
+    margin: 20px auto;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 22px;
+    line-height: 1.5;
+    color: #72543a;
+}
+
+/* FECHA */
+
+.history-date {
+    display: inline-block;
+    margin: 25px auto 10px;
+    padding: 10px 28px;
+    border: 1px solid #c49a4c;
+    border-radius: 30px;
+    color: #795638;
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 600px) {
+
+    .history-section {
+        min-height: 100svh;
+        padding: 35px 16px;
+    }
+
+    .history-container {
+        padding: 25px 15px;
+        outline-offset: 4px;
+    }
+
+    .history-top-decoration {
+        font-size: 29px;
+        margin-bottom: 10px;
+    }
+
+    .history-subtitle {
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .history-heading h2 {
+        font-size: 43px;
+    }
+
+    .history-description {
+        font-size: 18px;
+        margin: 15px auto 22px;
+    }
+
+    .history-photo-frame {
+        width: 100%;
+        max-width: 310px;
+        height: 410px;
+        margin: 20px auto;
+        border-radius: 160px 160px 10px 10px;
+    }
+
+    .history-photo-placeholder {
+        border-radius: 150px 150px 5px 5px;
+        font-size: 16px;
+    }
+
+    .history-names h2 {
+        font-size: 48px;
+    }
+
+    .history-message p {
+        font-size: 19px;
+    }
+
+    .history-date {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        padding: 9px 18px;
+    }
+}
+
+/* =========================================
+   AJUSTE COMPACTO - NUESTRA HISTORIA
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .history-section {
+        min-height: 100svh;
+        height: auto;
+        padding: 22px 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .history-container {
+        width: 100%;
+        padding: 18px 13px;
+        outline-offset: 3px;
+    }
+
+    .history-top-decoration {
+        font-size: 25px;
+        margin-bottom: 5px;
+    }
+
+    .history-subtitle {
+        font-size: 9px;
+        letter-spacing: 3.5px;
+        margin-bottom: 9px;
+    }
+
+    .history-heading h2 {
+        font-size: 39px;
+        margin-bottom: 5px;
+    }
+
+    .history-divider {
+        margin: 10px auto;
+    }
+
+    .history-divider::before,
+    .history-divider::after {
+        width: 45px;
+    }
+
+    .history-description {
+        font-size: 16px;
+        line-height: 1.35;
+        margin: 10px auto 15px;
+        max-width: 330px;
+    }
+
+    .history-photo-frame {
+    width: 260px;
+    height: 390px;
+    max-width: 85%;
+    margin: 20px auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 135px 135px 9px 9px;
+    }
+
+    .history-photo-placeholder {
+        border-radius: 130px 130px 5px 5px;
+        font-size: 14px;
+    }
+
+    .history-names h2 {
+        font-size: 43px;
+        margin: 8px 0;
+    }
+
+    .history-message p {
+        font-size: 17px;
+        line-height: 1.3;
+        margin: 10px auto;
+        max-width: 310px;
+    }
+
+    .history-date {
+        margin: 12px auto 5px;
+        padding: 8px 16px;
+        font-size: 9px;
+        letter-spacing: 1px;
+    }
+}
+
+/* FOTOGRAFÍA NUESTRA HISTORIA */
+
+.history-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 130px 130px 5px 5px;
+}
+
+/* AJUSTE DEL MARCO PARA LA FOTO DE BODA */
+
+.history-photo-frame {
+    width: 260px;
+    height: 390px;
+    max-width: 85%;
+    margin: 20px auto;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-radius: 135px 135px 9px 9px;
+}
+
+.history-photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    border-radius: 130px 130px 5px 5px;
+}
+
+/* AJUSTE PARA CELULARES */
+
+@media (max-width: 600px) {
+    .history-photo-frame {
+        width: 250px;
+        height: 375px;
+        max-width: 85%;
+    }
+
+    .history-photo {
+        object-fit: contain;
+        object-position: center;
+    }
+}
+
+
+/* =====================================
+   GALERÍA DE CELINA Y FRANCO
+===================================== */
+
+.gallery-section {
+    width: 100%;
+    padding: 70px 20px;
+    background: #faf6ef;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.gallery-container {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 40px 22px;
+    border: 1px solid #c5a36a;
+    outline: 1px solid #e4d4b7;
+    outline-offset: 6px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.gallery-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.gallery-ornament {
+    display: block;
+    font-size: 35px;
+    color: #b89552;
+    margin-bottom: 10px;
+}
+
+.gallery-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #92754f;
+    margin-bottom: 18px;
+}
+
+.gallery-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 42px;
+    font-weight: 400;
+    color: #805b3c;
+    line-height: 1.2;
+    margin: 0 0 18px;
+}
+
+.gallery-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    color: #b89552;
+    margin: 22px 0;
+}
+
+.gallery-divider::before,
+.gallery-divider::after {
+    content: "";
+    width: 65px;
+    height: 1px;
+    background: #c5a36a;
+}
+
+.gallery-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #806c56;
+    max-width: 370px;
+    margin: 0 auto;
+}
+
+/* Fotografía principal */
+
+.gallery-featured {
+    max-width: 390px;
+    margin: 0 auto 38px;
+    text-align: center;
+}
+
+.gallery-featured-frame {
+    padding: 8px;
+    background: #fffdf9;
+    border: 1px solid #c5a36a;
+    box-shadow: 0 5px 18px rgba(100, 75, 40, 0.15);
+    position: relative;
+}
+
+.gallery-featured-frame::before {
+    content: "♡";
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #faf6ef;
+    color: #b89552;
+    padding: 0 12px;
+    font-size: 23px;
+    z-index: 2;
+}
+
+
+.gallery-featured-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    object-position: center;
+    background: #f4eee5;
+    cursor: pointer;
+}
+
+
+.gallery-featured-caption {
+    font-family: 'Great Vibes', cursive;
+    font-size: 29px;
+    color: #805b3c;
+    margin: 18px 0 0;
+}
+
+
+/* GALERÍA TIPO MOSAICO */
+
+.gallery-grid {
+    column-count: 2;
+    column-gap: 16px;
+    width: 100%;
+}
+
+.gallery-item {
+    display: inline-block;
+    width: 100%;
+    margin: 0 0 16px;
+    padding: 6px;
+    box-sizing: border-box;
+
+    background: #fffdf9;
+    border: 1px solid #c5a36a;
+    box-shadow: 0 4px 12px rgba(100, 75, 40, 0.12);
+
+    break-inside: avoid;
+    -webkit-column-break-inside: avoid;
+}
+
+.gallery-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.02);
+}
+
+.gallery-footer {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.gallery-footer p {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    color: #805b3c;
+    margin: 15px 0 0;
+}
+
+/* Visor ampliado */
+
+.gallery-lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(25, 20, 16, 0.94);
+    align-items: center;
+    justify-content: center;
+    padding: 55px 55px 75px;
+    box-sizing: border-box;
+}
+
+.gallery-lightbox.active {
+    display: flex;
+}
+
+.gallery-lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+}
+
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    border: none;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 42px;
+    padding: 10px;
+}
+
+.lightbox-close {
+    top: 12px;
+    right: 20px;
+}
+
+.lightbox-prev {
+    left: 8px;
+}
+
+.lightbox-next {
+    right: 8px;
+}
+
+.lightbox-counter {
+    position: absolute;
+    bottom: 18px;
+    color: #f4e5c7;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+}
+
+/* Adaptación para celulares */
+
+@media (max-width: 600px) {
+    .gallery-section {
+        padding: 48px 15px;
+    }
+
+    .gallery-container {
+        padding: 32px 13px;
+    }
+
+    .gallery-heading h2 {
+        font-size: 35px;
+    }
+
+    .gallery-description {
+        font-size: 18px;
+    }
+
+    .gallery-featured {
+        max-width: 100%;
+    }
+
+    .gallery-featured-image {
+        max-height: 390px;
+    }
+
+    .gallery-grid {
+        gap: 11px;
+    }
+
+    .gallery-item {
+        padding: 4px;
+    }
+
+    .gallery-featured-caption,
+    .gallery-footer p {
+        font-size: 26px;
+    }
+
+    .gallery-lightbox {
+        padding: 55px 38px 70px;
+    }
+}
+
+
+/* =================================
+   TARJETA ROMÁNTICA NUESTRO AMOR
+================================= */
+
+.gallery-note-card {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 22px 13px;
+    margin: 0 0 16px;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #fffdf8 0%,
+            #f8f0e5 100%
+        );
+
+    border: 1px solid #c5a36a;
+    outline: 1px solid #e7d7b9;
+    outline-offset: -6px;
+
+    box-shadow: 0 5px 15px rgba(100, 75, 40, 0.10);
+
+    position: relative;
+    break-inside: avoid;
+}
+
+/* Corazones decorativos en las esquinas */
+
+.gallery-note-card::before {
+    content: "✧";
+    position: absolute;
+    top: 9px;
+    left: 12px;
+    color: #c5a36a;
+    font-size: 17px;
+}
+
+.gallery-note-card::after {
+    content: "✧";
+    position: absolute;
+    top: 9px;
+    right: 12px;
+    color: #c5a36a;
+    font-size: 17px;
+}
+
+/* Corazón superior */
+
+.note-heart {
+    display: block;
+    color: #b89552;
+    font-size: 32px;
+    margin: 5px 0 8px;
+}
+
+/* Título */
+
+.gallery-note-card h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 34px;
+    font-weight: normal;
+    color: #805b3c;
+    line-height: 1.1;
+    margin: 8px 0;
+}
+
+/* Separador */
+
+.note-divider {
+    color: #b89552;
+    font-size: 19px;
+    margin: 10px 0;
+}
+
+/* Mensaje */
+
+.gallery-note-card p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.4;
+    color: #806c56;
+    margin: 10px 0;
+}
+
+/* Firma */
+
+.note-signature {
+    display: block;
+    font-family: 'Great Vibes', cursive;
+    font-size: 27px;
+    color: #805b3c;
+    margin-top: 15px;
+}
+
+/* Texto final */
+
+.gallery-note-card p:last-of-type::after {
+    content: "";
+}
+
+
+@media (max-width: 600px) {
+    .gallery-note-card {
+        padding: 24px 12px;
+    }
+
+    .gallery-note-card h3 {
+        font-size: 31px;
+    }
+
+    .gallery-note-card p {
+        font-size: 17px;
+        line-height: 1.4;
+    }
+
+    .note-signature {
+        font-size: 26px;
+    }
+}
+
+
+/* =====================================
+   QUINTA SECCIÓN: NUESTRO VIDEO
+===================================== */
+
+.video-section {
+    width: 100%;
+    padding: 65px 20px;
+    background: #faf6ef;
+    box-sizing: border-box;
+}
+
+.video-container {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 40px 22px;
+    border: 1px solid #c5a36a;
+    outline: 1px solid #e4d4b5;
+    outline-offset: 6px;
+    box-sizing: border-box;
+}
+
+.video-heading {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.video-ornament {
+    display: block;
+    color: #b89552;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.video-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #92754f;
+}
+
+.video-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    font-weight: normal;
+    color: #805b3c;
+    margin: 12px 0;
+}
+
+.video-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    color: #b89552;
+    margin: 20px 0;
+}
+
+.video-divider::before,
+.video-divider::after {
+    content: "";
+    width: 65px;
+    height: 1px;
+    background: #c5a36a;
+}
+
+.video-description {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    line-height: 1.5;
+    color: #806c56;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+/* MARCO DEL VIDEO */
+
+.video-frame {
+    max-width: 390px;
+    margin: 0 auto;
+    padding: 7px;
+    background: #fffdf9;
+    border: 2px solid #c5a36a;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(100, 75, 40, 0.15);
+    overflow: hidden;
+}
+
+/* VIDEO VERTICAL ORIGINAL */
+
+.wedding-video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 650px;
+    object-fit: contain;
+    background: #211b16;
+    border-radius: 9px;
+}
+
+/* CIERRE */
+
+.video-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.video-footer p {
+    font-family: 'Great Vibes', cursive;
+    font-size: 31px;
+    color: #805b3c;
+    margin: 15px 0;
+}
+
+.video-signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: #a18455;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 600px) {
+
+    .video-section {
+        padding: 45px 15px;
+    }
+
+    .video-container {
+        padding: 30px 13px;
+    }
+
+    .video-heading h2 {
+        font-size: 40px;
+    }
+
+    .video-description {
+        font-size: 19px;
+    }
+
+    .video-frame {
+        max-width: 100%;
+    }
+
+    .wedding-video {
+        max-height: 550px;
+    }
+
+    .video-footer p {
+        font-size: 27px;
+    }
+
+}
+
+
+/* =====================================
+   SEXTA SECCIÓN: NUESTRO GRAN DÍA
+===================================== */
+
+.event-section {
+    width: 100%;
+    padding: 65px 20px;
+    background: #faf6ef;
+    box-sizing: border-box;
+}
+
+.event-container {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 40px 22px;
+    border: 1px solid #c5a36a;
+    outline: 1px solid #e4d4b5;
+    outline-offset: 6px;
+    box-sizing: border-box;
+}
+
+/* ENCABEZADO */
+
+.event-heading {
+    text-align: center;
+}
+
+.event-ornament {
+    display: block;
+    color: #b89552;
+    font-size: 34px;
+}
+
+.event-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #92754f;
+}
+
+.event-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    font-weight: normal;
+    color: #805b3c;
+    margin: 12px 0;
+}
+
+.event-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    color: #b89552;
+    margin: 22px 0;
+}
+
+.event-divider::before,
+.event-divider::after {
+    content: "";
+    width: 65px;
+    height: 1px;
+    background: #c5a36a;
+}
+
+/* FECHA */
+
+.event-date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    max-width: 390px;
+    margin: 25px auto;
+    padding: 15px;
+    border: 1px solid #c5a36a;
+    border-radius: 12px;
+    background: #fffdf9;
+}
+
+.event-date-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 70px;
+    line-height: 1;
+    color: #805b3c;
+}
+
+.event-date p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: #92754f;
+    margin: 0;
+}
+
+.event-date div span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    color: #805b3c;
+}
+
+/* CUENTA REGRESIVA */
+
+.countdown-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    text-align: center;
+    color: #805b3c;
+    margin: 30px 0 18px;
+}
+
+.countdown {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.countdown-item {
+    text-align: center;
+    padding: 13px 4px;
+    border: 1px solid #c5a36a;
+    border-radius: 12px;
+    background: #fffdf9;
+}
+
+.countdown-item span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: #805b3c;
+}
+
+.countdown-item p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #92754f;
+    margin: 3px 0 0;
+}
+
+/* TARJETAS DE EVENTOS */
+
+.event-card {
+    padding: 28px 20px;
+    margin: 25px 0;
+    text-align: center;
+    background: #fffdf9;
+    border: 1px solid #c5a36a;
+    outline: 1px solid #e8d9bf;
+    outline-offset: -6px;
+    box-shadow: 0 5px 15px rgba(100, 75, 40, 0.08);
+}
+
+.event-card-icon {
+    color: #b89552;
+    font-size: 32px;
+}
+
+.event-card-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #92754f;
+}
+
+.event-card h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    font-weight: normal;
+    color: #805b3c;
+    margin: 10px 0;
+}
+
+.event-card-divider {
+    width: 70px;
+    height: 1px;
+    background: #c5a36a;
+    margin: 15px auto;
+}
+
+.event-place {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #805b3c;
+}
+
+.event-address {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    line-height: 1.5;
+    color: #806c56;
+}
+
+.event-time {
+    display: inline-block;
+    padding: 8px 22px;
+    margin: 10px 0 20px;
+    background: #f4e8d1;
+    border-radius: 30px;
+    color: #805b3c;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+}
+
+/* BOTÓN GOOGLE MAPS */
+
+.event-map-button {
+    display: block;
+    width: fit-content;
+    margin: 5px auto 0;
+    padding: 13px 25px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #c5a36a, #98713e);
+    color: white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(100, 75, 40, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.event-map-button:hover {
+    transform: translateY(-2px);
+}
+
+/* CIERRE */
+
+.event-footer {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.event-footer p {
+    font-family: 'Great Vibes', cursive;
+    font-size: 31px;
+    line-height: 1.3;
+    color: #805b3c;
+}
+
+.event-footer h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 30px;
+    font-weight: normal;
+    color: #b89552;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 600px) {
+
+    .event-section {
+        padding: 45px 15px;
+    }
+
+    .event-container {
+        padding: 30px 13px;
+    }
+
+    .event-heading h2 {
+        font-size: 40px;
+    }
+
+    .event-date-number {
+        font-size: 60px;
+    }
+
+    .countdown {
+        gap: 6px;
+    }
+
+    .countdown-item {
+        padding: 10px 2px;
+    }
+
+    .countdown-item span {
+        font-size: 27px;
+    }
+
+    .countdown-item p {
+        font-size: 8px;
+        letter-spacing: 0;
+    }
+
+    .event-card {
+        padding: 25px 13px;
+    }
+
+    .event-card h3 {
+        font-size: 33px;
+    }
+
+    .event-address {
+        font-size: 17px;
+    }
+
+    .event-footer p {
+        font-size: 27px;
+    }
+
+}
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.countdown-item {
+    background: #fffdf8;
+    border: 1px solid #c5a36a;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.countdown-item span {
+    color: #8b6b3e;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+
+/* =====================================
+   CONFIRMACION DE ASISTENCIA - RSVP
+===================================== */
+
+.rsvp-section {
+    padding: 80px 20px 60px;
+    background: #fbf7ef;
+    color: #49351f;
+    position: relative;
+    overflow: hidden;
+}
+
+.rsvp-container {
+    max-width: 950px;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.rsvp-heading {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.rsvp-rings {
+    display: block;
+    font-size: 45px;
+    color: #b68a43;
+}
+
+.rsvp-heading h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(38px, 6vw, 58px);
+    font-weight: normal;
+    color: #795426;
+    margin: 5px 0;
+}
+
+.rsvp-subtitle {
+    letter-spacing: 9px;
+    color: #a17a3d;
+    margin: 10px 0 25px;
+}
+
+.rsvp-heading h3 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(38px, 5vw, 52px);
+    font-weight: normal;
+    color: #795426;
+    margin: 15px 0 5px;
+}
+
+.rsvp-heading > p:not(.rsvp-subtitle) {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    color: #554735;
+}
+
+.rsvp-heart {
+    display: block;
+    font-size: 35px;
+    color: #a77a35;
+    margin-top: 15px;
+}
+
+.rsvp-card {
+    padding: 35px;
+    border: 1px solid #c9a568;
+    border-radius: 28px;
+    background: rgba(255, 253, 248, 0.85);
+    box-shadow: 0 5px 20px rgba(100, 70, 30, 0.08);
+}
+
+#rsvpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#rsvpForm label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 23px;
+    font-weight: 600;
+    color: #49351f;
+    margin-top: 10px;
+}
+
+#rsvpForm input,
+#rsvpForm select {
+    width: 100%;
+    padding: 15px 18px;
+    border: 1px solid #b9aa98;
+    border-radius: 12px;
+    background: #fff;
+    color: #49351f;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#rsvpForm input:focus,
+#rsvpForm select:focus {
+    border-color: #b68a43;
+    box-shadow: 0 0 0 3px rgba(182, 138, 67, 0.12);
+}
+
+.rsvp-whatsapp-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+    text-align: center;
+    color: #49351f;
+}
+
+.rsvp-whatsapp-title span {
+    font-size: 30px;
+    color: #9d7439;
+}
+
+.rsvp-whatsapp-title p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    margin: 0;
+}
+
+.rsvp-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.whatsapp-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 20px;
+    border: 2px solid #d5ad60;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #287448, #104b30);
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+}
+
+.whatsapp-button svg {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    color: #fff;
+}
+
+.whatsapp-button span:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    gap: 3px;
+}
+
+.whatsapp-button strong {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+}
+
+.whatsapp-button small {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    color: #fff;
+}
+
+.whatsapp-arrow {
+    font-size: 35px;
+    color: #f4d99c;
+}
+
+.rsvp-note {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #68563e;
+    margin: 20px 0 0;
+}
+
+
+/* =====================================
+   GUARDAR LA FECHA
+===================================== */
+
+.calendar-section {
+    padding: 65px 20px;
+    background: #f8f1e5;
+}
+
+.calendar-container {
+    max-width: 850px;
+    margin: auto;
+    padding: 45px 25px;
+    text-align: center;
+    border: 2px solid #c6a064;
+    border-radius: 30px;
+    background: #fffaf1;
+    box-shadow: 0 5px 20px rgba(100, 70, 30, 0.08);
+}
+
+.calendar-container h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(42px, 6vw, 60px);
+    font-weight: normal;
+    color: #795426;
+    margin: 0 0 12px;
+}
+
+.calendar-container p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: #554735;
+    margin-bottom: 25px;
+}
+
+#calendarButton {
+    padding: 15px 35px;
+    border: 2px solid #d5ad60;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #c69a4e, #936321);
+    color: white;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(100, 70, 30, 0.2);
+    transition: transform 0.3s ease;
+}
+
+#calendarButton:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =====================================
+   AGRADECIMIENTO FINAL
+===================================== */
+
+.thanks-section {
+    padding: 80px 20px;
+    background: #fbf7ef;
+}
+
+.thanks-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 45px 30px;
+    text-align: center;
+    border: 1px solid #c9a568;
+    border-radius: 30px;
+    background: #fffdf8;
+    box-shadow: 0 5px 20px rgba(100, 70, 30, 0.08);
+}
+
+.thanks-container h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(38px, 6vw, 55px);
+    font-weight: normal;
+    color: #795426;
+    margin: 0 0 20px;
+}
+
+.thanks-container p {
+    max-width: 650px;
+    margin: auto;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: #554735;
+    line-height: 1.6;
+}
+
+.thanks-signature {
+    display: block;
+    margin-top: 25px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 55px;
+    color: #946b35;
+}
+
+.thanks-heart {
+    display: block;
+    margin-top: 10px;
+    font-size: 35px;
+    color: #a77a35;
+}
+
+
+/* =====================================
+   ADAPTACION PARA CELULARES
+===================================== */
+
+@media (max-width: 600px) {
+
+    .rsvp-section {
+        padding: 55px 14px 40px;
+    }
+
+    .rsvp-card {
+        padding: 22px 16px;
+        border-radius: 20px;
+    }
+
+    .rsvp-heading h2 {
+        font-size: 39px;
+    }
+
+    .rsvp-heading h3 {
+        font-size: 38px;
+    }
+
+    .rsvp-heading > p:not(.rsvp-subtitle) {
+        font-size: 18px;
+    }
+
+    #rsvpForm label {
+        font-size: 20px;
+    }
+
+    #rsvpForm input,
+    #rsvpForm select {
+        font-size: 14px;
+        padding: 13px;
+    }
+
+    .rsvp-whatsapp-title {
+        flex-wrap: wrap;
+    }
+
+    .rsvp-whatsapp-title p {
+        font-size: 19px;
+    }
+
+    .rsvp-buttons {
+        grid-template-columns: 1fr;
+        gap: 13px;
+    }
+
+    .whatsapp-button {
+        padding: 13px 16px;
+    }
+
+    .whatsapp-button svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .whatsapp-button strong {
+        font-size: 23px;
+    }
+
+    .whatsapp-button small {
+        font-size: 12px;
+    }
+
+    .calendar-section,
+    .thanks-section {
+        padding: 45px 14px;
+    }
+
+    .calendar-container {
+        padding: 35px 18px;
+    }
+
+    .calendar-container p,
+    .thanks-container p {
+        font-size: 19px;
+    }
+
+    #calendarButton {
+        width: 100%;
+        padding: 14px 12px;
+        font-size: 20px;
+    }
+
+    .thanks-container {
+        padding: 35px 18px;
+    }
+
+    .thanks-signature {
+        font-size: 45px;
+    }
+}
+
+/* BOTON FLOTANTE DE MUSICA */
+
+.music-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 22px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid #c5a36a;
+    background: #8b693b;
+    color: white;
+    font-size: 27px;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-toggle.playing {
+    animation: musicPulse 2s infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(197,163,106,0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(197,163,106,0);
+    }
+}
+
+
+/* =========================================
+   REDISEÑO DE PORTADA INICIAL
+   CELINA & FRANCO
+========================================= */
+
+.envelope-screen {
+    position: relative;
+    isolation: isolate;
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 35px 20px;
+    justify-content: center;
+    gap: 0;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #fffefa 0%,
+            #f8f1e6 65%,
+            #e9dcc8 100%
+        );
+
+    overflow: hidden;
+}
+
+/* MARCO DORADO */
+
+.envelope-screen {
+    outline: 1px solid rgba(177, 143, 91, 0.55);
+    outline-offset: -13px;
+}
+
+/* FLORES SUPERIORES */
+
+.envelope-screen::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: -18px;
+    left: -18px;
+    width: min(62vw, 255px);
+    height: 230px;
+
+    background-image:
+        url("assest/imagenes/flores-superiores-limpias.png");
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top left;
+
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* FLORES INFERIORES */
+
+.envelope-screen::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: -15px;
+    right: -15px;
+    width: min(65vw, 270px);
+    height: 245px;
+
+    background-image:
+        url("assest/imagenes/flores-inferiores-limpias.png");
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+
+    opacity: 0.85;
+    pointer-events: none;
+}
+
+/* CONTENIDO POR ENCIMA DE LAS FLORES */
+
+.envelope-screen > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* TEXTO SUPERIOR */
+
+.intro-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 3.5px;
+    line-height: 1.8;
+    text-align: center;
+    color: #a58b68;
+
+    margin-bottom: clamp(38px, 7vh, 58px);
+    max-width: 290px;
+}
+
+/* SOBRE */
+
+.envelope-container {
+    width: min(82vw, 320px);
+    height: auto;
+    aspect-ratio: 300 / 190;
+
+    filter:
+        drop-shadow(0 15px 18px rgba(117, 88, 53, 0.20))
+        drop-shadow(0 3px 5px rgba(117, 88, 53, 0.10));
+
+    transition: transform 0.4s ease;
+}
+
+.envelope-container:active {
+    transform: scale(0.98);
+}
+
+/* PARTE TRASERA */
+
+.envelope-back {
+    background: linear-gradient(
+        145deg,
+        #ead8b9,
+        #c8ad82
+    );
+
+    border: 1px solid rgba(160, 125, 75, 0.35);
+    border-radius: 5px;
+}
+
+/* CARTA INTERIOR */
+
+.letter {
+    background:
+        linear-gradient(
+            145deg,
+            #fffefa,
+            #f7f0e4
+        );
+
+    border: 1px solid #e8d9bc;
+    box-shadow: inset 0 0 18px rgba(177, 143, 91, 0.08);
+}
+
+.letter-monogram {
+    font-size: 42px;
+    color: #a18455;
+}
+
+.letter p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    color: #806044;
+}
+
+/* FRENTE DEL SOBRE */
+
+.envelope-front {
+    background: linear-gradient(
+        135deg,
+        #ddc7a4,
+        #c4a982
+    );
+
+    border: 1px solid rgba(160, 125, 75, 0.25);
+}
+
+/* SOLAPA */
+
+.envelope-flap {
+    background: linear-gradient(
+        135deg,
+        #f0e1c7,
+        #ddc6a2
+    );
+}
+
+/* SELLO DE CERA */
+
+.wax-seal {
+    width: 62px;
+    height: 62px;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #c49b70,
+            #966c46 75%
+        );
+
+    border: 2px solid #dfc69e;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 250, 239, 0.85),
+        0 5px 14px rgba(83, 57, 31, 0.30);
+
+    font-size: 27px;
+    color: #fff8e9;
+}
+
+/* MENSAJE DE APERTURA */
+
+.open-message {
+    margin-top: clamp(35px, 6vh, 50px);
+
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    letter-spacing: 0.7px;
+    text-align: center;
+
+    color: #806c56;
+}
+
+/* NOMBRES */
+
+.couple-signature {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(39px, 11vw, 48px);
+
+    margin-top: 17px;
+    color: #98764d;
+
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* AJUSTES PARA CELULARES PEQUEÑOS */
+
+@media (max-width: 380px) {
+
+    .envelope-screen {
+        padding: 28px 17px;
+    }
+
+    .intro-text {
+        font-size: 8px;
+        letter-spacing: 2.8px;
+    }
+
+    .envelope-container {
+        width: 84vw;
+    }
+
+    .open-message {
+        font-size: 15px;
+    }
+
+    .couple-signature {
+        font-size: 39px;
+    }
+
+    .envelope-screen::before {
+        width: 190px;
+        height: 190px;
+    }
+
+    .envelope-screen::after {
+        width: 205px;
+        height: 200px;
+    }
+}
+
+/* PANTALLAS DE POCA ALTURA */
+
+@media (max-height: 650px) {
+
+    .envelope-screen {
+        padding-top: 22px;
+        padding-bottom: 22px;
+    }
+
+    .intro-text {
+        margin-bottom: 25px;
+    }
+
+    .envelope-container {
+        width: min(76vw, 270px);
+    }
+
+    .open-message {
+        margin-top: 25px;
+    }
+
+    .couple-signature {
+        margin-top: 10px;
+    }
+}
+
+
+/* =========================================
+   AJUSTE DE LA CARTA INTERIOR DEL SOBRE
+========================================= */
+
+.envelope-container .letter {
+    width: 86%;
+    height: 82%;
+    left: 7%;
+    bottom: 5%;
+
+    background: linear-gradient(
+        145deg,
+        #fffefa,
+        #f8f1e5
+    );
+
+    border: 1px solid #dfcba9;
+    border-radius: 2px;
+
+    box-shadow:
+        0 3px 12px rgba(100, 75, 40, 0.12),
+        inset 0 0 15px rgba(190, 160, 110, 0.08);
+
+    transition: transform 1.2s ease;
+}
+
+/* INICIALES */
+
+.envelope-container .letter-monogram {
+    font-size: 39px;
+    color: #987447;
+    margin-bottom: 5px;
+}
+
+/* TEXTO */
+
+.envelope-container .letter p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    color: #806044;
+    margin: 5px;
+}
+
+/* FECHA */
+
+.envelope-container .letter-date {
+    font-size: 9px;
+    letter-spacing: 3px;
+    color: #987b54;
+}
+
+/* ALTURA DE APERTURA */
+
+.envelope-container.open .letter {
+    transform: translateY(-90px);
+    transition-delay: .5s;
+}
+
+/* AJUSTE PARA CELULARES */
+
+@media (max-width: 600px) {
+    .envelope-container .letter {
+        width: 86%;
+        height: 82%;
+        left: 7%;
+        bottom: 5%;
+    }
+
+    .envelope-container.open .letter {
+        transform: translateY(-85px);
+    }
+}
+
+
+/* INDICADOR PARA DESLIZAR */
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    margin: 25px auto 15px;
+    color: #a18455;
+    text-align: center;
+    animation: scrollAppear 1.5s ease both;
+}
+
+.scroll-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    letter-spacing: 2.5px;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 27px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        #b99a69
+    );
+}
+
+.scroll-arrow {
+    font-size: 25px;
+    line-height: 12px;
+    animation: scrollDown 1.5s infinite;
+}
+
+@keyframes scrollDown {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(7px);
+    }
+}
+
+@keyframes scrollAppear {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   ANIMACIONES PREMIUM AL DESPLAZARSE
+   BODA CELINA Y FRANCO
+========================================= */
+
+/* Estado inicial de los elementos */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(38px) scale(0.985);
+    filter: blur(3px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1s ease;
+
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform, filter;
+}
+
+/* Estado cuando aparecen en pantalla */
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+/* Fotografías: entrada más delicada */
+.gallery-featured,
+.gallery-item,
+.history-photo-frame,
+.video-frame {
+    transform-origin: center;
+}
+
+/* Tarjetas: movimiento suave */
+.event-card,
+.rsvp-card,
+.gallery-note-card {
+    transform-origin: center bottom;
+}
+
+/* Evitar animaciones si el visitante lo solicita */
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+        opacity: 1;
+        transform: none;
+        filter: none;
+        transition: none;
+    }
+}
+
+
+/* =========================================
+   ANIMACIÓN PREMIUM DEL SOBRE
+   CELINA & FRANCO
+========================================= */
+
+/* Entrada inicial de los textos */
+.intro-text {
+    animation: introElegant 1.4s ease both;
+}
+
+.open-message {
+    animation: introElegant 1.5s ease 0.5s both;
+}
+
+.couple-signature {
+    animation: signatureElegant 1.8s ease 0.8s both;
+}
+
+/* Movimiento flotante del sobre */
+.envelope-container:not(.open) {
+    animation: envelopeFloat 4s ease-in-out infinite;
+}
+
+/* Brillo del sello dorado */
+.wax-seal {
+    overflow: hidden;
+    isolation: isolate;
+    animation: sealGlow 2.8s ease-in-out infinite;
+}
+
+/* Reflejo de luz que atraviesa el sello */
+.wax-seal::after {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    pointer-events: none;
+
+    background: linear-gradient(
+        115deg,
+        transparent 30%,
+        rgba(255, 248, 220, 0.65) 48%,
+        transparent 65%
+    );
+
+    transform: translateX(-130%);
+    animation: sealShine 3.8s ease-in-out infinite;
+}
+
+/* Movimiento del sobre */
+@keyframes envelopeFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+/* Brillo del sello */
+@keyframes sealGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 0 3px rgba(255, 250, 239, 0.85),
+            0 5px 14px rgba(83, 57, 31, 0.30);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 5px rgba(255, 250, 239, 0.95),
+            0 5px 22px rgba(180, 135, 75, 0.48);
+    }
+}
+
+/* Reflejo del sello */
+@keyframes sealShine {
+    0%, 35% {
+        transform: translateX(-130%);
+    }
+
+    70%, 100% {
+        transform: translateX(130%);
+    }
+}
+
+/* Entrada elegante de textos */
+@keyframes introElegant {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+        filter: blur(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Entrada de los nombres */
+@keyframes signatureElegant {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Detener movimiento cuando se abre el sobre */
+.envelope-container.open {
+    animation: none;
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    .intro-text,
+    .open-message,
+    .couple-signature,
+    .envelope-container,
+    .wax-seal,
+    .wax-seal::after {
+        animation: none !important;
+    }
+}
+
+
+/* =========================================
+   APERTURA CINEMATOGRÁFICA DEL SOBRE
+   CELINA & FRANCO
+========================================= */
+
+/* Perspectiva tridimensional */
+.envelope-container {
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+/* Solapa del sobre */
+.envelope-flap {
+    transform-origin: top center;
+    backface-visibility: hidden;
+
+    transition:
+        transform 1.25s cubic-bezier(0.65, 0, 0.35, 1),
+        opacity 0.6s ease;
+}
+
+/* Apertura de la solapa */
+.envelope-container.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+/* Sello de cera */
+.wax-seal {
+    transition:
+        opacity 0.65s ease,
+        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 0.65s ease;
+}
+
+/* Desvanecimiento del sello */
+.envelope-container.open .wax-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.35) rotate(-30deg);
+    filter: blur(5px);
+}
+
+/* Carta interior */
+.envelope-container .letter {
+    transform: translateY(0) scale(0.96);
+    opacity: 0.96;
+
+    box-shadow:
+        0 5px 15px rgba(100, 75, 40, 0.15),
+        0 15px 30px rgba(100, 75, 40, 0.10);
+
+    transition:
+        transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s,
+        opacity 1s ease 0.35s,
+        box-shadow 1s ease;
+}
+
+/* La carta sale del sobre */
+.envelope-container.open .letter {
+    transform: translateY(-105px) scale(1.04);
+    opacity: 1;
+
+    box-shadow:
+        0 12px 25px rgba(100, 75, 40, 0.20),
+        0 25px 40px rgba(100, 75, 40, 0.12);
+}
+
+/* Adaptación para celulares */
+@media (max-width: 600px) {
+
+    .envelope-container.open .letter {
+        transform: translateY(-90px) scale(1.03);
+    }
+
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+
+    .envelope-flap,
+    .wax-seal,
+    .envelope-container .letter {
+        transition: none !important;
+    }
+
+}
+
+/* =====================================
+   PARTICULAS DORADAS - CELINA Y FRANCO
+===================================== */
+
+.gold-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.gold-particle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--size, 6px);
+    height: var(--size, 6px);
+    border-radius: 50%;
+    background: radial-gradient(circle, #fff8d8 0%, #e5bd64 45%, #b88632 100%);
+    box-shadow: 0 0 10px rgba(218, 175, 85, 0.8);
+    opacity: 0;
+    animation: goldParticleFloat var(--duration, 2s) ease-out forwards;
+}
+
+@keyframes goldParticleFloat {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.2);
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--move-x)),
+                calc(-50% + var(--move-y))
+            )
+            scale(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .gold-particle {
+        animation: none;
+        display: none;
+    }
+}
