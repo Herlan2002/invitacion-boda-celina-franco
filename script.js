@@ -344,22 +344,28 @@ if (envelope) {
                 return;
             }
 
-            const contact = button.dataset.contact;
-            const phone = contacts[contact];
+            
+const contact = button.dataset.contact;
+const phone = contacts[contact];
 
-            if (!phone) return;
+if (!phone) return;
 
-            const message =
-                `¡Hola! Soy ${name}.\n\n` +
-                `Confirmación para la boda de Celina y Franco:\n` +
-                `Asistencia: ${attendance}\n` +
-                `Cantidad de personas: ${guestCount}\n\n` +
-                `¡Muchas gracias!`;
+const guestCountText = guestCount === "more-than-10"
+    ? "Más de 10 personas"
+    : guestCount + (guestCount === "1" ? " persona" : " personas");
 
-            const whatsappURL =
-                `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+const message =
+    `¡Hola! Soy ${name}.\n\n` +
+    `Confirmación para la boda de Celina y Franco:\n` +
+    `Asistencia: ${attendance}\n` +
+    `Cantidad de personas: ${guestCountText}\n\n` +
+    `¡Muchas gracias!`;
 
-            window.open(whatsappURL, "_blank");
+const whatsappURL =
+    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+window.open(whatsappURL, "_blank");
+
 
         });
 
